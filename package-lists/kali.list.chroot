@@ -1,15 +1,53 @@
-# You always want those
+######################
+# Core Kali packages #
+######################
 kali-linux-core
 kali-desktop-live
 
-# Kali applications
-#<package>
-# You can customize the set of Kali metapackages (groups of tools) to install
-# For the complete list see: https://tools.kali.org/kali-metapackages
+###############################################################################
+# Kali applications:                                                          #
+# You can customize the set of Kali metapackages (groups of tools) to install #
+# For the complete list see: https://tools.kali.org/kali-metapackages/        #
+###############################################################################
 kali-linux-default
-# kali-linux-large
-# kali-linux-everything
-# kali-tools-top10
 
-# Graphical desktop
+################
+# Kali desktop #
+################
 kali-desktop-xfce
+
+#################
+# Miscellaneous #
+#################
+bsdiff
+code
+dfc
+dotnet-sdk-3.1
+git-flow
+gnupg2
+html2text
+htop
+keepassxc
+keychain
+lsb
+mc
+neofetch
+nmon
+ntp
+rclone
+torbrowser-launcher
+tree
+
+#######
+# zsh #
+#######
+zsh
+zsh-autosuggestion
+zsh-syntax-highlighting
+
+##############
+# Filesystem #
+##############
+dosfstools
+ntfs-3g
+xfsprogs
