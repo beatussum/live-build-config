@@ -1,0 +1,11 @@
+label live-forensic
+	menu label Live USB ^forensic mode
+	linux @LINUX@
+	initrd @INITRD@
+	append @APPEND_LIVE@ noswap noautomount
+
+label live-encrypted-persistence
+    menu label Live USB ^encrypted persistence    (check https://kali.org/prst)
+    linux @LINUX@
+    initrd @INITRD@
+    append @APPEND_LIVE@ persistence persistence-encryption=luks persistence-media=removable-usb persistence-storage=filesystem
