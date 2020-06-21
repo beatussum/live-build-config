@@ -5,7 +5,7 @@ title-text: ""
 message-font: "Unifont Regular 16"
 terminal-font: "Unifont Regular 16"
 
-#help bar at the bottom
+# Help bar at the bottom
 + label {
         top = 100%-50
         left = 0
@@ -25,11 +25,11 @@ terminal-font: "Unifont Regular 16"
         height = 35
         align = "center"
         color = "#ffffff"
-        text = "Kali Linux Live Boot Menu"
+        text = "Beatussum's Kali Linux Live Boot Menu"
         font = "DejaVu Sans Bold 16"
 }
 
-#boot menu
+# Boot menu
 + boot_menu {
         left = 13%
         width = 74%
@@ -47,7 +47,7 @@ terminal-font: "Unifont Regular 16"
         item_icon_space = 0
 }
 
-#progress bar
+# Progress bar
 + progress_bar {
         id = "__timeout__"
         left = 13%
