@@ -25,7 +25,7 @@ terminal-font: "Unifont Regular 16"
         height = 35
         align = "center"
         color = "#ffffff"
-        text = "Beatussum's Kali Linux Live Boot Menu"
+        text = "Beatussum's Kali Linux live boot menu"
         font = "DejaVu Sans Bold 16"
 }
 
