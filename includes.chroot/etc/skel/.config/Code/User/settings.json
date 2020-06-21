@@ -1,0 +1,37 @@
+{
+    "files.insertFinalNewline": true,
+    "editor.fontSize": 18,
+    "editor.wordWrapColumn": 70,
+    "git.alwaysSignOff": true,
+    "git.defaultCloneDirectory": "~/Documents/projects",
+    "git.enableCommitSigning": true,
+    "workbench.colorTheme": "Material Theme Darker",
+    "cmake.configureOnOpen": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.env.linux": {
+        "NEOFETCH": "false"
+    },
+    "C_Cpp.autoAddFileAssociations": false,
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.intelliSenseMode": "gcc-x64",
+    "C_Cpp.default.includePath": [
+        "/usr/include/qt5/**"
+    ],
+    "C_Cpp.vcpkg.enabled": false,
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "doxdocgen.generic.authorEmail": "beatussum@protonmail.com",
+    "doxdocgen.generic.authorName": "Mattéo Rossillol‑‑Laruelle",
+    "doxdocgen.generic.authorTag": "@author {author} <{email}>",
+    "files.trimTrailingWhitespace": true,
+    "update.mode": "none",
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.cursorStyle": "block",
+    "files.exclude": {
+        "**/.DS_Store": false,
+        "**/.hg": false,
+        "**/.svn": false,
+        "**/build": true,
+        "**/CVS": false
+    }
+}
