@@ -1,18 +1,20 @@
 #!/bin/sh
 
+
 # Handle systems where /lib is not merged in /usr/lib
-if [ ! -h /lib ]; then
-    mv /usr/lib/live/config/* /lib/live/config/
-fi
+test ! -h /lib && mv /usr/lib/live/config/* /lib/live/config/
 
 # Enable cryptsetup in the initramfs for later use if the user
 # adds an encrypted persistence partition.
-# This is until https://bugs.debian.org/908220 has a proper fix.
-if [ -e /etc/cryptsetup-initramfs/conf-hook ]; then
-    if grep -q '^#CRYPTSETUP=' /etc/cryptsetup-initramfs/conf-hook; then
-	sed -i -e 's/^#CRYPTSETUP=.*/CRYPTSETUP=y/' /etc/cryptsetup-initramfs/conf-hook
+# This is until https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=908220
+# has a proper fix.
+readonly CRYPT_INITRAMFS_DIR="/etc/cryptsetup-initramfs"
+if [ -e "${CRYPT_INITRAMFS_DIR}/conf-hook" ]; then
+    if grep -q "^#CRYPTSETUP=" "${CRYPT_INITRAMFS_DIR}/conf-hook"; then
+	    sed -i -e "s/^#CRYPTSETUP=.*/CRYPTSETUP=y/" \
+            source "${CRYPT_INITRAMFS_DIR}/conf-hook"
     else
-	echo "CRYPTSETUP=y" >>/etc/cryptsetup-initramfs/conf-hook
+	    echo "CRYPTSETUP=y" >> "${CRYPT_INITRAMFS_DIR}/conf-hook"
     fi
 fi
 
@@ -20,13 +22,10 @@ fi
 update-initramfs -u
 
 # Run updatedb to initialize the database for the locate command
-if [ -x "$(which updatedb 2>/dev/null)" ]; then
-    updatedb
-fi
+test -x "$(which updatedb 2>> /dev/null)" && updatedb
 
 # Mark kernel related packages on hold so that they are not upgraded in
 # the live system
-for pkg in $(dpkg-query -W -f'${binary:Package}\n' 'linux-image-*' 'linux-headers-*' 'linux-kbuild-*')
-do
-    apt-mark hold $pkg
-done
+dpkg-query -W -f='${binary:Package}\n' \
+    "linux-image-*" "linux-headers-*" "linux-kbuild-*" \
+    | xargs apt-mark hold
