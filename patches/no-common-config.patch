@@ -1,0 +1,16 @@
+Subject: Do not use the common default configuration of Kali Linux
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+Some configurations located in `kali-config/common` are overrided by
+this custom configuration.
+
+--- a/auto/config
++++ b/auto/config
+@@ -105,7 +105,6 @@ done
+ rm -f config/archives/kali-proposed-updates.list.*
+
+ # Copy over all files from official kali configuration
+-cp -rT kali-config/common config
+ [ ! -d kali-config/variant-$variant ] || cp -rTL kali-config/variant-$variant config
+
+ if [ -n "$enable_pu" ]; then
