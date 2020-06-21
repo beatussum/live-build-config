@@ -1,9 +1,6 @@
 # config/common - common options for live-build(7)
 
 
-# Version of live-build used to build config (config format version)
-LB_CONFIGURATION_VERSION="20191222"
-
 # Set debconf(1) priority to use
 LB_DEBCONF_PRIORITY="high"
 
