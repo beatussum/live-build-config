@@ -1,0 +1,13 @@
+Subject: Change default variant
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+In order to make my own variant as default variant:
+`./build.sh` is now equivalent to `./build.sh --variant bsum`
+
+--- a/kali-config/variant-default
++++ b/kali-config/variant-default
+@@ -1 +1 @@
+-variant-xfce
+\ No newline at end of file
++variant-bsum
+\ No newline at end of file
