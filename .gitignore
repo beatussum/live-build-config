@@ -9,9 +9,10 @@ kali-config/includes.chroot/home/
 .build/
 
 # Kali Linux upstream
-.getopt.sh
 auto/
+simple-cdd/
+.getopt.sh
+.mirror
 build.sh
 build_all.sh
 live-build-config-master.tar.gz
-simple-cdd/
