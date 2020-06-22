@@ -3,25 +3,25 @@ MIRROR		?= $(shell cat .mirror)
 USERNAME	?=
 FULLNAME	?=
 
-PATCH_FILES		?= $(wildcard patches/*.patch)
+PATCH_FILES	?= $(wildcard patches/*.patch)
 ARCHIVE_NAME	?= live-build-config-master
 KALI_UPSTREAM	?= https://gitlab.com/kalilinux/build-scripts/live-build-config/-/archive/master
 
-VARIANT				= kali-config/variant-bsum
-INC_CHROOT			= $(VARIANT)/includes.chroot
-INC_BINARY			= $(VARIANT)/includes.binary
-HOME				= $(INC_CHROOT)/home
+VARIANT			= kali-config/variant-bsum
+INC_CHROOT		= $(VARIANT)/includes.chroot
+INC_BINARY		= $(VARIANT)/includes.binary
+HOME			= $(INC_CHROOT)/home
 PRESEED_INSTALLER	= $(VARIANT)/debian-installer/preseed.cfg
-LB_CONFIG			= $(INC_BINARY)/live/config.conf
+LB_CONFIG		= $(INC_BINARY)/live/config.conf
 
-RM			?= rm -f
+RM		?= rm -f
 RM_DIR		?= rm -fr
 PATCH		?= patch -p1
-TAR			?= tar xf
+TAR		?= tar xf
 TAR_OPTS	?= --strip-components=1 --exclude="$(ARCHIVE_NAME)/README.md" --exclude="$(ARCHIVE_NAME)/.gitignore"
 CURL		?= curl
 CP_DIR		?= cp -air
-SED			?= sed
+SED		?= sed
 
 .PHONY: all
 all: patch-kali-live-build-config $(HOME)/$(USERNAME) $(PRESEED_INSTALLER) $(LB_CONFIG)
