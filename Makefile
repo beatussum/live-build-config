@@ -35,7 +35,7 @@ clean:
 	$(RM_DIR) auto simple-cdd
 	$(RM) .getopt.sh build.sh build_all.sh \
 		$(ARCHIVE_NAME).tar.gz \
-		$(PRESSED_INSTALLER) $(LB_CONFIG)
+		$(PRESEED_INSTALLER) $(LB_CONFIG)
 
 .PHONY: patch-kali-live-build-config
 patch-kali-live-build-config: $(ARCHIVE_NAME)
