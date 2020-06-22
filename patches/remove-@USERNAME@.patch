@@ -5,11 +5,14 @@ Remove the generic home directory before creating the live image.
 
 --- a/auto/config
 +++ b/auto/config
-@@ -107,6 +107,7 @@ rm -f config/archives/kali-proposed-updates.list.*
- # Copy over all files from official kali configuration
+@@ -108,6 +108,10 @@ rm -f config/archives/kali-proposed-updates.list.*
  cp -rT kali-config/common config
  [ ! -d kali-config/variant-$variant ] || cp -rTL kali-config/variant-$variant config
-+test "${variant}" = "bsum" && rm -r config/includes.chroot/home/@USERNAME@
- 
+
++if [ $(basename $(realpath "kali-config/variant-${variant}")) = "variant-bsum" ]; then
++	rm -r config/includes.chroot/home/@USERNAME@
++fi
++
  if [ -n "$enable_pu" ]; then
  	mkdir -p config/archives
+ 	echo "deb $kali_mirror $dist-proposed-updates main contrib non-free" \
