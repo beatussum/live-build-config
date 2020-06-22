@@ -19,23 +19,13 @@ RM_DIR		?= rm -fr
 PATCH		?= patch -p1
 TAR			?= tar xf
 TAR_OPTS	?= --strip-components=1 --exclude="$(ARCHIVE_NAME)/README.md" --exclude="$(ARCHIVE_NAME)/.gitignore"
-WGET		?= wget
+CURL		?= curl
 CP_DIR		?= cp -air
 SED			?= sed
 
 .PHONY: all
 all: patch-kali-live-build-config $(HOME)/$(USERNAME) $(PRESEED_INSTALLER) $(LB_CONFIG)
 	./build.sh
-
-.PHONY: clean
-clean:
-	find kali-config -maxdepth 1 -mindepth 1 \
-		! -name "variant-bsum" \
-		-exec $(RM_DIR) {} \;
-	$(RM_DIR) auto simple-cdd
-	$(RM) .getopt.sh build.sh build_all.sh \
-		$(ARCHIVE_NAME).tar.gz \
-		$(PRESEED_INSTALLER) $(LB_CONFIG)
 
 .PHONY: patch-kali-live-build-config
 patch-kali-live-build-config: $(ARCHIVE_NAME)
@@ -47,7 +37,7 @@ $(ARCHIVE_NAME): $(ARCHIVE_NAME).tar.gz
 	$(TAR) "$<" $(TAR_OPTS)
 
 $(ARCHIVE_NAME).tar.gz:
-	$(WGET) "$(KALI_UPSTREAM)/$(ARCHIVE_NAME).tar.gz"
+	$(CURL) "$(KALI_UPSTREAM)/$(ARCHIVE_NAME).tar.gz" -o "$@"
 
 $(HOME)/$(USERNAME): $(HOME)/@USERNAME@
 	$(CP_DIR) "$<" "$@"
@@ -63,3 +53,12 @@ $(LB_CONFIG): $(LB_CONFIG).in
 		-e "s|@FULLNAME@|$(FULLNAME)|" \
 		"$<" > "$@"
 
+.PHONY: clean
+clean:
+	find kali-config -maxdepth 1 -mindepth 1 \
+		! -name "variant-bsum" \
+		-exec $(RM_DIR) {} \;
+	$(RM_DIR) auto simple-cdd
+	$(RM) .getopt.sh build.sh build_all.sh \
+		$(ARCHIVE_NAME).tar.gz \
+		$(PRESEED_INSTALLER) $(LB_CONFIG)
