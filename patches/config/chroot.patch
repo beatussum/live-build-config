@@ -1,0 +1,17 @@
+From: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Subject: override `config/chroot`
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+This patch overrides the `config/chroot` file created by `./build.sh`
+
+--- a/config/chroot
++++ b/config/chroot
+@@ -10,7 +10,7 @@
+ LB_INTERACTIVE="false"
+
+ # Set keyring packages
+-LB_KEYRING_PACKAGES="kali-archive-keyring"
++LB_KEYRING_PACKAGES="ca-certificates kali-archive-keyring"
+
+ # Set kernel flavour to use (with arch)
+ LB_LINUX_FLAVOURS_WITH_ARCH="amd64"

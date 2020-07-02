@@ -15,4 +15,4 @@ simple-cdd/
 .mirror
 build.sh
 build_all.sh
-live-build-config-master.tar.gz
+live-build-config.tar.gz

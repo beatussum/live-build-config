@@ -1,4 +1,5 @@
-Subject: Do not use the common default configuration of Kali Linux
+From: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Subject: do not use the common default configuration of Kali Linux
 Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
 Description:
 Some configurations located in `kali-config/common` are overrided by

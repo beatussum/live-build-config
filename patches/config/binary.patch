@@ -1,0 +1,51 @@
+From: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Subject: override `config/binary`
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+This patch overrides the `config/binary` file created by `./build.sh`
+
+--- a/config/binary
++++ b/config/binary
+@@ -47,10 +47,10 @@
+ LB_DEBIAN_INSTALLER_PRESEEDFILE=""
+
+ # Toggle use of GUI debian-installer
+-LB_DEBIAN_INSTALLER_GUI="true"
++LB_DEBIAN_INSTALLER_GUI="false"
+
+ # Set hdd label
+-LB_HDD_LABEL="DEBIAN_LIVE"
++LB_HDD_LABEL="BSUM_KALI_LIVE"
+
+ # Set hdd filesystem size
+ LB_HDD_SIZE="auto"
+@@ -59,16 +59,16 @@
+ LB_HDD_PARTITION_START=""
+
+ # Set iso author
+-LB_ISO_APPLICATION="Kali Linux"
++LB_ISO_APPLICATION="Beatussum"
+
+ # Set iso preparer
+-LB_ISO_PREPARER="live-build @LB_VERSION@; https://salsa.debian.org/live-team/live-build"
++LB_ISO_PREPARER="live-build @LB_VERSION@; https://github.com/beatussum/live-build-config/"
+
+ # Set iso publisher
+-LB_ISO_PUBLISHER="Kali"
++LB_ISO_PUBLISHER="Beatussum; https://github.com/beatussum/; beatussum@protonmail.com"
+
+ # Set iso volume (max 32 chars)
+-LB_ISO_VOLUME="Kali Live"
++LB_ISO_VOLUME="Beatussum's Kali Live"
+
+ # Set jffs2 eraseblock size
+ LB_JFFS2_ERASEBLOCK=""
+@@ -83,7 +83,7 @@
+ LB_WIN32_LOADER="false"
+
+ # Set net tarball
+-LB_NET_TARBALL="true"
++LB_NET_TARBALL="false"
+
+ # Set onie
+ LB_ONIE="false"

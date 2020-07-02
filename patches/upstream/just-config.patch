@@ -1,0 +1,20 @@
+From: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Subject: build and configuration are done in two steps
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+The `build.sh` script only runs `lb config` in order to patch some
+configuration files before building.
+
+--- a/build.sh
++++ b/build.sh
+@@ -215,10 +215,6 @@ case "$IMAGE_TYPE" in
+ 		[ $? -eq 0 ] || failure
+ 		run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
+ 		[ $? -eq 0 ] || failure
+-		run_and_log $SUDO lb build
+-		if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
+-			failure
+-		fi
+ 	;;
+ 	installer)
+ 		if [ "$NO_CLEAN" = "" ]; then
