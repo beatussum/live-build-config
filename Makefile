@@ -1,3 +1,5 @@
+SHELL	= /bin/bash
+
 VARIANT		?= bsum
 HOSTNAME	?= $(VARIANT)-kali
 USERNAME	?=
