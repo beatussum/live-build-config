@@ -71,7 +71,7 @@ $(VARIANT_DIR)/$(HOME)/$(USERNAME): $(VARIANT_DIR)/$(HOME)/@USERNAME@
 $(VARIANT_DIR)/$(PRESEED_INSTALLER): $(VARIANT_DIR)/$(PRESEED_INSTALLER).in
 	$(MKDIR) $(dir $@)
 	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|" \
-		-e "s|@MIRROR@|$(MIRROR)|" \
+		-e "s|@MIRROR@|$(MIRROR:%/kali/=%)|" \
 		"$<" > "$@"
 
 $(VARIANT_DIR)/$(LIVE_CONFIG): $(VARIANT_DIR)/$(LIVE_CONFIG).in
