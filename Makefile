@@ -88,3 +88,5 @@ clean:
 		-exec $(RM_DIR) {} \;
 	$(RM_DIR) auto config simple-cdd
 	$(RM) .getopt.sh build.sh build_all.sh
+	$(RM) $(VARIANT_DIR)/$(PRESEED_INSTALLER) \
+		$(VARIANT_DIR)/$(LIVE_CONFIG)
