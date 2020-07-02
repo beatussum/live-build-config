@@ -15,12 +15,14 @@ My custom configuration making some changes to the [official **Kali Linux** conf
 
 ### Building
 
-1. Choose a mirror from [official **Kali Linux** mirrors](https://www.kali.org/docs/community/kali-linux-mirrors/) and put it into a file named _.mirror_
+1. Choose a mirror from [official **Kali Linux** mirrors](http://http.kali.org/README.mirrorlist) and put it into a file named _.mirror_
 
-2. Just build…
+2. **OPTIONAL** If you want to build the image with the last **Kali Linux** upstream files, you can just delete the file named _.lock_. **WARNING** The build can fail.
+
+3. Just build…
 
 ```bash
 make HOSTNAME=<what_you_want> USERNAME=<what_you_want> FULLNAME=<what_you_want>
 ```
 
-3. You have now a file named _bsum-kali-${LB_ARCHITECTURE}.hybrid.iso_
+4. You have now a file named _bsum-kali-${LB_ARCHITECTURE}.hybrid.iso_
