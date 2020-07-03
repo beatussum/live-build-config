@@ -1,8 +1,8 @@
 # Keep just my custom variant
-kali-config/
+kali-config/*
 !kali-config/variant-bsum/
 
-kali-config/includes.chroot/home/
+kali-config/includes.chroot/home/*
 !kali-config/includes.chroot/home/@USERNAME@/
 
 # `live-build` files
