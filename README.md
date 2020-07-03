@@ -11,13 +11,16 @@ My custom configuration making some changes to the [official **Kali Linux** conf
 - **curl**
 - **git**
 - **live-build**
-- **cdebootstrap**
+
+```bash
+sudo apt install curl git live-build
+```
 
 ### Building
 
 1. Choose a mirror from [official **Kali Linux** mirrors](http://http.kali.org/README.mirrorlist) and put it into a file named _.mirror_
 
-2. **OPTIONAL** If you want to build the image with the last **Kali Linux** upstream files, you can just delete the file named _.lock_. **WARNING** The build can fail.
+2. **OPTIONAL** If you want to build the image with the last **Kali Linux** upstream files, you can just delete the file named _.lock\_upstream_. **WARNING** The build can fail.
 
 3. Just build…
 
