@@ -1,1 +1,1 @@
-deb [arch=amd64,arm,arm64,armhf,armv7hl,i386,i696] https://packages.microsoft.com/debian/10/prod/ buster main
+deb [arch=all,amd64,arm,arm64,armhf,armv7hl,i386,i686,noarch] https://packages.microsoft.com/debian/10/prod/ buster main
