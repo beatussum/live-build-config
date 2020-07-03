@@ -1,0 +1,15 @@
+From: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Subject: override `config/common`
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+This patch overrides the `config/common` file created by `./build.sh`
+
+--- a/config/common
++++ b/config/common
+@@ -121,5 +121,5 @@
+ APTITUDE_OPTIONS="--assume-yes"
+ DEBOOTSTRAP_OPTIONS="--include=ca-certificates --keyring=/usr/share/keyrings/kali-archive-keyring.gpg"
+ DEBOOTSTRAP_SCRIPT=""
+-GZIP_OPTIONS="-6 --rsyncable"
++LZMA_OPTIONS="-5 -T $(( $(nproc) / 2 )) --verbose"
+ ISOHYBRID_OPTIONS=""
