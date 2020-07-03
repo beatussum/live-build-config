@@ -29,7 +29,6 @@ html2text
 htop
 keepassxc
 keychain
-lsb
 mc
 neofetch
 nmon
@@ -42,7 +41,7 @@ tree
 # zsh #
 #######
 zsh
-zsh-autosuggestion
+zsh-autosuggestions
 zsh-syntax-highlighting
 
 ##############
