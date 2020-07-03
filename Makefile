@@ -5,7 +5,7 @@ HOSTNAME	?= $(VARIANT)-kali
 USERNAME	?=
 FULLNAME	?=
 
-ifeq ($(wildcard .lock),)
+ifeq ($(wildcard .lock_upstream),)
 	LOCK	= master
 else
 	LOCK	= $(shell cat .lock)
