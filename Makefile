@@ -8,7 +8,7 @@ FULLNAME	?=
 ifeq ($(wildcard .lock_upstream),)
 	LOCK	= master
 else
-	LOCK	= $(shell cat .lock)
+	LOCK	= $(shell cat .lock_upstream)
 endif
 
 MIRROR		= $(shell cat .mirror)
