@@ -1,0 +1,44 @@
+From: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Subject: update and add some `lb config` options
+Signed-off-by: Mattéo Rossillol‑‑Laruelle <beatussum@protonmail.com>
+Description:
+This patch aims to add and override some options from  the
+Kali Linux upstream. It replaces the various patches under
+the `patches/config` path.
+
+--- a/auto/config
++++ b/auto/config
+@@ -120,7 +120,7 @@ lb config noauto \
+ 	--distribution "$dist" \
+ 	--debian-installer-distribution "$dist" \
+ 	--archive-areas "main contrib non-free" \
+-	--debootstrap-options "--keyring=/usr/share/keyrings/kali-archive-keyring.gpg" \
++	--debootstrap-options "--include=ca-certificates --keyring=/usr/share/keyrings/kali-archive-keyring.gpg" \
+ 	--keyring-packages kali-archive-keyring \
+ 	--updates false \
+ 	--backports false \
+@@ -130,14 +130,21 @@ lb config noauto \
+ 	--mirror-bootstrap "$kali_mirror" \
+ 	--mirror-debian-installer "$kali_mirror" \
+ 	--mirror-binary "$public_kali_mirror" \
+-	--iso-application "Kali Linux" \
+-	--iso-publisher "Kali" \
+-	--iso-volume "Kali Live" \
++	--iso-application "Beatussum" \
++	--iso-preparer 'live-build $VERSION; https://github.com/beatussum/live-build-config/' \
++	--iso-publisher "Beatussum; https://github.com/beatussum/; beatussum@protonmail.com" \
++	--iso-volume "Beatussum's Kali Live" \
+ 	--linux-packages linux-image \
+ 	--memtest memtest86 \
+ 	--bootappend-live "boot=live components quiet splash noeject" \
+ 	--bootappend-live-failsafe "boot=live components noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
+ 	--bootappend-install "net.ifnames=0" \
+ 	--security false \
++	--compression lzma \
++	--debconf-priority high \
++	--debian-installer-gui false \
++	--checksums "sha512" \
++	--hdd-label "BSUM_KALI_LIVE" \
++	--verbose \
+ 	$lb_opts \
+ 	"$@"
