@@ -2,4 +2,4 @@
 
 
 readonly DPKG_CFG="/etc/dpkg/dpkg.cfg"
-mv "${DPKG_CFG_DIR}" "${DPKG_CFG_DIR}.d/00-default"
+mv "${DPKG_CFG}" "${DPKG_CFG}.d/00-default"
