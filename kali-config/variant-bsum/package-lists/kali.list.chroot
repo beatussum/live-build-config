@@ -1,7 +1,6 @@
 ######################
 # Core Kali packages #
 ######################
-kali-linux-core
 kali-desktop-live
 
 ###############################################################################
@@ -22,7 +21,6 @@ kali-desktop-xfce
 bsdiff
 code
 dfc
-dotnet-sdk-3.1
 git-flow
 gnupg2
 html2text
