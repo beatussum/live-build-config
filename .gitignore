@@ -2,8 +2,9 @@
 kali-config/*
 !kali-config/variant-bsum/
 
-kali-config/includes.chroot/home/*
-!kali-config/includes.chroot/home/@USERNAME@/
+# Created from templates
+kali-config/variant-bsum/includes.chroot/home/*
+!kali-config/variant-bsum/includes.chroot/home/@USERNAME@/
 kali-config/variant-bsum/debian-installer/preseed.cfg
 kali-config/variant-bsum/includes.binary/live/config.conf
 
@@ -14,6 +15,7 @@ chroot/
 config/
 images/
 local/
+build.log
 
 # Kali Linux upstream
 auto/
