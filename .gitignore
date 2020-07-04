@@ -4,9 +4,16 @@ kali-config/*
 
 kali-config/includes.chroot/home/*
 !kali-config/includes.chroot/home/@USERNAME@/
+kali-config/variant-bsum/debian-installer/preseed.cfg
+kali-config/variant-bsum/includes.binary/live/config.conf
 
 # `live-build` files
 .build/
+cache/
+chroot/
+config/
+images/
+local/
 
 # Kali Linux upstream
 auto/
