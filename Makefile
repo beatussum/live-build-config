@@ -44,7 +44,7 @@ clean-templates: config
 	$(RM) config/{$(PRESEED_INSTALLER:$(VARIANT_DIR)/%=%),\
 	$(LIVE_CONFIG:$(VARIANT_DIR)/%=%)}.in
 
-	$(RM_DIR) "config/$(HOME)/@USERNAME@"
+	$(RM_DIR) "config/$(HOME:$(VARIANT_DIR)/%=%)/@USERNAME@"
 
 .PHONY: patch-config
 patch-config: config
