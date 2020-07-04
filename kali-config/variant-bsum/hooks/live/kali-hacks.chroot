@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 # Handle systems where /lib is not merged in /usr/lib
