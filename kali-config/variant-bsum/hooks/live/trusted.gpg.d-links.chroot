@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+for f in /etc/apt/trusted.conf.d/debian-archive-*; do
+    ln -fs "/usr/share/keyrings/$(basename "${f}")" "${f}"
+done; unset f
