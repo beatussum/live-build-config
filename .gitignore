@@ -15,6 +15,7 @@ chroot/
 config/
 images/
 local/
+.lock
 build.log
 
 # Kali Linux upstream
