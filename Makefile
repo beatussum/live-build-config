@@ -37,6 +37,7 @@ CURL		?= curl
 MKDIR		?= mkdir -p
 SED		?= sed
 CP_DIR		?= cp -r
+CHMOD		?= chmod +x
 RM		?= rm -f
 
 .PHONY: build
@@ -92,6 +93,7 @@ config/$(PRESEED_INSTALLER): $(VARIANT_DIR)/$(PRESEED_INSTALLER).in
 config/$(FIX_PERMS_HOOK): $(VARIANT_DIR)/$(FIX_PERMS_HOOK).in
 	$(MKDIR) "$(dir $@)"
 	$(SED) "s|@USERNAME@|$(USERNAME)|g" "$<" > "$@"
+	$(CHMOD) "$@"
 
 .PHONY: clean
 clean:
