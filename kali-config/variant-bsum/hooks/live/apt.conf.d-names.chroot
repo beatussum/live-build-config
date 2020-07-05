@@ -3,7 +3,12 @@
 
 sed -i "s/01autoremove-kernels/01-autoremove-kernels.conf/g" \
     /etc/kernel/postinst.d/apt-auto-removal
+sed -i "s/01autoremove-postgresql/01-autoremove-postgresql/g" \
+    /usr/share/postgresql-common/pg_updateaptconfig
 
 for f in /etc/apt/apt.conf.d/*; do
-    mv "${f}" "$(sed -E "s|([0-9]+)|\1-|g" <<< "${f%.conf}").conf"
+    [[ "${f}" = 00* ]] && continue
+
+    mv "${f}" "$(sed -E "s|([0-9]+)([a-z][a-z-]+)|\1-\2|g" \
+        <<< "${f%.conf}").conf"
 done; unset f
