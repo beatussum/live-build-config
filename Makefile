@@ -41,12 +41,13 @@ CHMOD		?= chmod +x
 RM		?= rm -f
 
 .PHONY: build
-build: clean-home-template patch-config $(ROOT)
+build: clean-templates patch-config $(ROOT)
 	lb build 2>&1 | tee -a "$(BUILD_LOG)"
 
 .PHONY: clean-templates
-clean-home-template: config
+clean-templates: config
 	$(RM_DIR) "config/$(HOME:$(VARIANT_DIR)/%=%)/@USERNAME@/"
+	$(RM) config/{$(LIVE_CONFIG),$(PRESEED_INSTALLER),$(FIX_PERMS_HOOK)}.in
 
 .PHONY: patch-config
 patch-config: config
