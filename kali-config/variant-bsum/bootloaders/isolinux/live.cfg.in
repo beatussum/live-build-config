@@ -1,5 +1,18 @@
+label live-@FLAVOUR@
+	menu label ^Live (@FLAVOUR@)
+	menu default
+	linux @LINUX@
+	initrd @INITRD@
+	append @APPEND_LIVE@
+
+label live-@FLAVOUR@-failsafe
+	menu label Live (@FLAVOUR@ ^failsafe)
+	linux @LINUX@
+	initrd @INITRD@
+	append @APPEND_LIVE_FAILSAFE@
+
 label live-forensic
-	menu label Live USB ^forensic mode
+	menu label Live USB forensic ^mode
 	linux @LINUX@
 	initrd @INITRD@
 	append @APPEND_LIVE@ noswap noautomount
