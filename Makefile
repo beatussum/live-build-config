@@ -17,13 +17,17 @@ KALI_UPSTREAM	?= https://gitlab.com/kalilinux/build-scripts/live-build-config/-/
 
 BUILD_LOG		= build.log
 VARIANT_DIR		?= kali-config/variant-$(VARIANT)
+LIVE_CONFIG		= includes.binary/live/config.conf
 HOME			= $(VARIANT_DIR)/includes.chroot/home
-PRESEED_INSTALLER	= $(VARIANT_DIR)/debian-installer/preseed.cfg
-LIVE_CONFIG		= $(VARIANT_DIR)/includes.binary/live/config.conf
+ROOT			= config/includes.chroot/root
+PRESEED_INSTALLER	= debian-installer/preseed.cfg
+FIX_PERMS_HOOK		= hooks/live/fix-permissions.chroot
 
 PATCHES_CONFIG		?= $(wildcard patches/config/*.patch)
 PATCHES_UPSTREAM	?= $(wildcard patches/upstream/*.patch)
 
+LN		?= ln -rs
+RM_DIR		?= rm -fr
 PATCH		?= patch -p1
 TAR		?= tar xf
 TAR_OPTS	?= --strip-components=1					\
@@ -31,20 +35,16 @@ TAR_OPTS	?= --strip-components=1					\
 			--exclude="$(ARCHIVE_NAME)-$(LOCK)/.gitignore"
 CURL		?= curl
 MKDIR		?= mkdir -p
-CP_DIR		?= cp -r
 SED		?= sed
-RM_DIR		?= rm -fr
+CP_DIR		?= cp -r
 RM		?= rm -f
 
 .PHONY: build
-build: clean-templates patch-config
+build: clean-home-template patch-config $(ROOT)
 	lb build 2>&1 | tee -a "$(BUILD_LOG)"
 
 .PHONY: clean-templates
-clean-templates: config
-	$(RM) config/{$(PRESEED_INSTALLER:$(VARIANT_DIR)/%=%),\
-	$(LIVE_CONFIG:$(VARIANT_DIR)/%=%)}.in
-
+clean-home-template: config
 	$(RM_DIR) "config/$(HOME:$(VARIANT_DIR)/%=%)/@USERNAME@/"
 
 .PHONY: patch-config
@@ -53,8 +53,11 @@ patch-config: config
 		$(PATCH) < "$${i}";	\
 	done; unset i
 
+$(ROOT): config/$(HOME:$(VARIANT_DIR)/%=%)/$(USERNAME)
+	$(LN) "$<" "$@"
+
 .PHONY: config
-config: patch-upstream $(HOME)/$(USERNAME) $(PRESEED_INSTALLER) $(LIVE_CONFIG)
+config: patch-upstream config/$(LIVE_CONFIG) $(HOME)/$(USERNAME) config/$(PRESEED_INSTALLER) config/$(FIX_PERMS_HOOK)
 	./build.sh --variant bsum --verbose
 
 .PHONY: patch-upstream
@@ -70,22 +73,25 @@ unpack: $(ARCHIVE_NAME).tar.gz
 $(ARCHIVE_NAME).tar.gz:
 	$(CURL) "$(KALI_UPSTREAM)/$(ARCHIVE_NAME).tar.gz" -o "$@"
 
-$(HOME)/$(USERNAME): $(HOME)/@USERNAME@
+config/$(LIVE_CONFIG): $(VARIANT_DIR)/$(LIVE_CONFIG).in
 	$(MKDIR) "$(dir $@)"
+	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|g"	\
+		-e "s|@USERNAME@|$(USERNAME)|g"	\
+		-e "s|@FULLNAME@|$(FULLNAME)|g"	\
+		"$<" > "$@"
+
+$(HOME)/$(USERNAME): $(HOME)/@USERNAME@
 	$(CP_DIR) "$<" "$@"
 
-$(PRESEED_INSTALLER): $(PRESEED_INSTALLER).in
+config/$(PRESEED_INSTALLER): $(VARIANT_DIR)/$(PRESEED_INSTALLER).in
 	$(MKDIR) "$(dir $@)"
-	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|"		\
-		-e "s|@MIRROR@|$(MIRROR:%/kali/=%)|"	\
+	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|g"		\
+		-e "s|@MIRROR@|$(MIRROR:%/kali/=%)|g"	\
 		"$<" > "$@"
 
-$(LIVE_CONFIG): $(LIVE_CONFIG).in
+config/$(FIX_PERMS_HOOK): $(VARIANT_DIR)/$(FIX_PERMS_HOOK).in
 	$(MKDIR) "$(dir $@)"
-	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|"	\
-		-e "s|@USERNAME@|$(USERNAME)|"	\
-		-e "s|@FULLNAME@|$(FULLNAME)|"	\
-		"$<" > "$@"
+	$(SED) "s|@USERNAME@|$(USERNAME)|g" "$<" > "$@"
 
 .PHONY: clean
 clean:
@@ -94,7 +100,11 @@ clean:
 		-exec $(RM_DIR) {} \;
 	$(RM_DIR) auto/ config/ simple-cdd/
 	$(RM) .getopt.sh build.sh build_all.sh
-	$(RM) "$(PRESEED_INSTALLER)" "$(LIVE_CONFIG)"
+
+ifneq ($(USERNAME),)
+	$(RM_DIR) "$(HOME)/$(USERNAME)"
+endif
+
 	$(RM) "$(BUILD_LOG)" chroot.* *.contents *.files	\
 		*.packages
 	$(RM_DIR) .build/ binary/ cache/ chroot/ config/	\
