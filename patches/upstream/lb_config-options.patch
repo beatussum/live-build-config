@@ -17,7 +17,7 @@ the `patches/config` path.
  	--keyring-packages kali-archive-keyring \
  	--updates false \
  	--backports false \
-@@ -130,14 +130,21 @@ lb config noauto \
+@@ -130,14 +130,22 @@ lb config noauto \
  	--mirror-bootstrap "$kali_mirror" \
  	--mirror-debian-installer "$kali_mirror" \
  	--mirror-binary "$public_kali_mirror" \
@@ -37,6 +37,7 @@ the `patches/config` path.
 +	--compression lzma \
 +	--debconf-priority high \
 +	--debian-installer-gui false \
++	--image-name "bsum-kali" \
 +	--checksums "sha512" \
 +	--hdd-label "BSUM_KALI_LIVE" \
 +	--verbose \
