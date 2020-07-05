@@ -45,7 +45,7 @@ clean-templates: config
 	$(RM) config/{$(PRESEED_INSTALLER:$(VARIANT_DIR)/%=%),\
 	$(LIVE_CONFIG:$(VARIANT_DIR)/%=%)}.in
 
-	$(RM_DIR) "config/$(HOME:$(VARIANT_DIR)/%=%)/@USERNAME@"
+	$(RM_DIR) "config/$(HOME:$(VARIANT_DIR)/%=%)/@USERNAME@/"
 
 .PHONY: patch-config
 patch-config: config
@@ -71,17 +71,17 @@ $(ARCHIVE_NAME).tar.gz:
 	$(CURL) "$(KALI_UPSTREAM)/$(ARCHIVE_NAME).tar.gz" -o "$@"
 
 $(HOME)/$(USERNAME): $(HOME)/@USERNAME@
-	$(MKDIR) $(dir $@)
+	$(MKDIR) "$(dir $@)"
 	$(CP_DIR) "$<" "$@"
 
 $(PRESEED_INSTALLER): $(PRESEED_INSTALLER).in
-	$(MKDIR) $(dir $@)
+	$(MKDIR) "$(dir $@)"
 	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|"		\
 		-e "s|@MIRROR@|$(MIRROR:%/kali/=%)|"	\
 		"$<" > "$@"
 
 $(LIVE_CONFIG): $(LIVE_CONFIG).in
-	$(MKDIR) $(dir $@)
+	$(MKDIR) "$(dir $@)"
 	$(SED) -e "s|@HOSTNAME@|$(HOSTNAME)|"	\
 		-e "s|@USERNAME@|$(USERNAME)|"	\
 		-e "s|@FULLNAME@|$(FULLNAME)|"	\
@@ -92,6 +92,15 @@ clean:
 	find kali-config -maxdepth 1 -mindepth 1	\
 		! -name "variant-bsum" 			\
 		-exec $(RM_DIR) {} \;
-	$(RM_DIR) auto config simple-cdd
+	$(RM_DIR) auto/ config/ simple-cdd/
 	$(RM) .getopt.sh build.sh build_all.sh
-	$(RM) $(PRESEED_INSTALLER) $(LIVE_CONFIG)
+	$(RM) "$(PRESEED_INSTALLER)" "$(LIVE_CONFIG)"
+	$(RM) "$(BUILD_LOG)" chroot.* *.contents *.files	\
+		*.packages
+	$(RM_DIR) .build/ binary/ cache/ chroot/ config/	\
+		images/ local/
+
+.PHONY: mrproper
+mrproper:
+	$(RM) live-build-config.tar.gz
+	$(RM) *.iso*
