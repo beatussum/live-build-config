@@ -1,28 +1,36 @@
 # Keep just my custom variant
-kali-config/*
-!kali-config/variant-bsum/
+/kali-config/*
+!/kali-config/variant-bsum/
 
 # Created from templates
-kali-config/variant-bsum/includes.chroot/home/*
-!kali-config/variant-bsum/includes.chroot/home/@USERNAME@/
-kali-config/variant-bsum/debian-installer/preseed.cfg
-kali-config/variant-bsum/includes.binary/live/config.conf
+/kali-config/variant-bsum/includes.chroot/home/*
+!/kali-config/variant-bsum/includes.chroot/home/@USERNAME@/
+/kali-config/variant-bsum/debian-installer/preseed.cfg
+/kali-config/variant-bsum/includes.binary/live/config.conf
 
 # `live-build` files
-.build/
-cache/
-chroot/
-config/
-images/
-local/
-.lock
-build.log
+/.build/
+/binary/
+/cache/
+/chroot/
+/config/
+/images/
+/local/
+/.lock
+/build.log
+/chroot.files
+/chroot.packages.install
+/chroot.packages.live
+/*.contents
+/*.files
+/*.iso*
+/*.packages
 
 # Kali Linux upstream
-auto/
-simple-cdd/
-.getopt.sh
-.mirror
-build.sh
-build_all.sh
-live-build-config.tar.gz
+/auto/
+/simple-cdd/
+/.getopt.sh
+/.mirror
+/build.sh
+/build_all.sh
+/live-build-config.tar.gz
