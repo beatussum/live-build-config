@@ -1,21 +1,21 @@
 APT
 {
-  Get
-  {
-     Fix-Broken "true";
-     Upgrade-Allow-New "true";
-     Update::InteractiveReleaseInfoChanges "yes";
-  };
+	Get
+	{
+		Fix-Broken "true";
+		Upgrade-Allow-New "true";
+		Update::InteractiveReleaseInfoChanges "yes";
+	};
 
-  Cache
-  {
-     AllNames "true";
-     RecurseDepends "true";
-     Installed "true";
-     ShowVersion "true";
-     ShowImplicit "true";
-     ShowVirtuals "true";
-  };
+	Cache
+	{
+		AllNames "true";
+		RecurseDepends "true";
+		Installed "true";
+		ShowVersion "true";
+		ShowImplicit "true";
+		ShowVirtuals "true";
+	};
 
-  Default-Release "kali-rolling";
+	Default-Release "kali-rolling";
 };

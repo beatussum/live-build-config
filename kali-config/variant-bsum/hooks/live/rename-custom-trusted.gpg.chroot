@@ -2,5 +2,5 @@
 
 
 for f in /etc/apt/trusted.gpg.d/*.chroot.*; do
-    mv "${f}" "${f/.chroot}"
+	mv "${f}" "${f/.chroot}"
 done; unset f

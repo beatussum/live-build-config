@@ -3,18 +3,18 @@
 # used to build the live images is gone from kali-rolling.       #
 ##################################################################
 #if ARCHITECTURES i386
-    linux-headers-686-pae
+	linux-headers-686-pae
 #endif
 #if ARCHITECTURES amd64
-    linux-headers-amd64
+	linux-headers-amd64
 #endif
 #if ARCHITECTURES arm64
-    linux-headers-arm64
+	linux-headers-arm64
 #endif
 #if ARCHITECTURES armel
-    linux-headers-marvell
+	linux-headers-marvell
 #endif
 #if ARCHITECTURES armhf
-    linux-headers-armmp
-    linux-headers-armmp-lpae
+	linux-headers-armmp
+	linux-headers-armmp-lpae
 #endif

@@ -4,7 +4,7 @@ export PROJECTS="${HOME}/Documents/projects"
 export SSHDIR="${HOME}/.ssh"
 
 # rclone
-alias gup="rclone sync --create-empty-src-dirs --exclude .directory  --copy-links --progress ${GDRIVE} googledrive:"
+alias gup="rclone sync --create-empty-src-dirs --exclude .directory --copy-links --progress ${GDRIVE} googledrive:"
 alias gdown="rclone sync --create-empty-src-dirs --exclude .directory --copy-links --progress googledrive: ${GDRIVE}"
 
 # extra

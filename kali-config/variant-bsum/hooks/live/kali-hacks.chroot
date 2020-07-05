@@ -10,12 +10,12 @@ test ! -h /lib && mv /usr/lib/live/config/* /lib/live/config/
 # has a proper fix.
 readonly CRYPT_INITRAMFS_DIR="/etc/cryptsetup-initramfs"
 if [ -e "${CRYPT_INITRAMFS_DIR}/conf-hook" ]; then
-    if grep -q "^#CRYPTSETUP=" "${CRYPT_INITRAMFS_DIR}/conf-hook"; then
-	    sed -i -e "s/^#CRYPTSETUP=.*/CRYPTSETUP=y/" \
-            source "${CRYPT_INITRAMFS_DIR}/conf-hook"
-    else
-	    echo "CRYPTSETUP=y" >> "${CRYPT_INITRAMFS_DIR}/conf-hook"
-    fi
+	if grep -q "^#CRYPTSETUP=" "${CRYPT_INITRAMFS_DIR}/conf-hook"; then
+		sed -i -e "s/^#CRYPTSETUP=.*/CRYPTSETUP=y/" \
+			source "${CRYPT_INITRAMFS_DIR}/conf-hook"
+	else
+		echo "CRYPTSETUP=y" >> "${CRYPT_INITRAMFS_DIR}/conf-hook"
+	fi
 fi
 
 # Rebuild the initramfs to include the last change
@@ -27,5 +27,5 @@ test -x "$(which updatedb 2>> /dev/null)" && updatedb
 # Mark kernel related packages on hold so that they are not upgraded in
 # the live system
 dpkg-query -W -f='${binary:Package}\n' \
-    "linux-image-*" "linux-headers-*" "linux-kbuild-*" \
-    | xargs apt-mark hold
+	"linux-image-*" "linux-headers-*" "linux-kbuild-*" \
+	| xargs apt-mark hold
