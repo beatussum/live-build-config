@@ -15,6 +15,7 @@ MIRROR		= $(shell cat .mirror)
 ARCHIVE_NAME	?= live-build-config
 KALI_UPSTREAM	?= https://gitlab.com/kalilinux/build-scripts/live-build-config/-/archive/$(LOCK)
 
+BUILD_LOG		= build.log
 VARIANT_DIR		?= kali-config/variant-$(VARIANT)
 HOME			= $(VARIANT_DIR)/includes.chroot/home
 PRESEED_INSTALLER	= $(VARIANT_DIR)/debian-installer/preseed.cfg
@@ -37,7 +38,7 @@ RM		?= rm -f
 
 .PHONY: build
 build: clean-templates patch-config
-	lb build
+	lb build 2>&1 | tee -a "$(BUILD_LOG)"
 
 .PHONY: clean-templates
 clean-templates: config
@@ -54,7 +55,7 @@ patch-config: config
 
 .PHONY: config
 config: patch-upstream $(HOME)/$(USERNAME) $(PRESEED_INSTALLER) $(LIVE_CONFIG)
-	./build.sh --variant bsum
+	./build.sh --variant bsum --verbose
 
 .PHONY: patch-upstream
 patch-upstream: unpack
