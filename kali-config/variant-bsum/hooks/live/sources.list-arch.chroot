@@ -1,5 +1,0 @@
-#!/bin/bash
-
-
-sed -i -E "s/(deb(-src)?)/\1 [arch=amd64,arm64,armel,armhf,i386]/g" \
-	/etc/apt/sources.list

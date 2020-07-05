@@ -7,7 +7,7 @@ sed -i "s/01autoremove-postgresql/01-autoremove-postgresql/g" \
 	/usr/share/postgresql-common/pg_updateaptconfig
 
 for f in /etc/apt/apt.conf.d/*; do
-	[[ "${f}" = 00* ]] && continue
+	[[ "$(basename "${f}")" = 00* ]] && continue
 
 	mv "${f}" "$(sed -E "s|([0-9]+)([a-z][a-z-]+)|\1-\2|g" \
 		<<< "${f%.conf}").conf"

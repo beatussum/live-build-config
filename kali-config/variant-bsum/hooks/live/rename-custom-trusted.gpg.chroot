@@ -1,6 +1,6 @@
 #!/bin/bash
 
 
-for f in /etc/apt/trusted.gpg.d/*.chroot.*; do
-	mv "${f}" "${f/.chroot}"
+for f in /etc/apt/trusted.gpg.d/*.key.chroot.*; do
+	mv "${f}" "${f/.key.chroot}"
 done; unset f
