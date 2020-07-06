@@ -1,6 +1,6 @@
 LIVE_HOSTNAME="@HOSTNAME@"
 LIVE_USERNAME="@USERNAME@"
-LIVE_USER_DEFAULT_GROUPS="adm,audio,bluetooth,cdrom,kali-trusted,lightdm,lp,mlocate,plugdev,users,video,sys,systemd-journal"
+LIVE_USER_DEFAULT_GROUPS="adm,audio,bluetooth,cdrom,kali-trusted,lightdm,lp,mlocate,plugdev,users,video,systemd-journal"
 LIVE_USER_FULLNAME="@FULLNAME@"
 LIVE_LOCALES="fr_FR.UTF-8"
 LIVE_TIMEZONE="Europe/Paris"
